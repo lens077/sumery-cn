@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { NAV_LINKS } from "@/content/navigation";
-import "./nav-styles.css";
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -49,7 +48,7 @@ export function SiteHeader() {
   };
 
   return (
-    <header className="absolute inset-x-0 top-0 z-20">
+    <header className="fixed inset-x-0 top-0 z-20">
       <nav
         aria-label="主导航"
         className="nav-glass mx-auto mt-4 w-[min(96%,1280px)]"
