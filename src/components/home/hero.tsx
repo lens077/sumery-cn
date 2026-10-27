@@ -40,7 +40,7 @@ export function Hero() {
         <div className="fade-bottom" />
       </div>
 
-      <div className="mx-auto grid max-w-(--container-page) items-center gap-12 px-6 pb-28 pt-44 lg:grid-cols-[46%_54%] lg:pb-36 lg:pt-52">
+      <div className="relative z-10 mx-auto grid max-w-(--container-page) items-center gap-12 px-6 pb-28 pt-44 lg:grid-cols-[46%_54%] lg:pb-36 lg:pt-52">
         <div>
           <p className="text-sm font-medium tracking-widest text-glow-soft">
             SUMERY STUDIO · 独立开发者 · 产品工作室
