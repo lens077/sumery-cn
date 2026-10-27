@@ -56,4 +56,5 @@
 2. **Lucy 模型许可证**：商用复用前需确认。
 3. **产品价格/下载地址**：各产品仓库未提供公开下载渠道，站点隐藏这些字段，不编造；确认后在 `src/content/products.ts` 补 `priceLabel`/`downloadUrl`。
 4. **Lepus / Corvus**：本地无对应仓库、blog 无相关记录，开放状态标为「待确认」，未提供游玩链接；核验后补 `playUrl`。
-5. **OG 分享图**：`/images/og/opengraph-image.png` 未生成（无品牌设计资产源文件），metadata 已引用，部署前需补图或移除引用。
+5. ~~OG 分享图~~ 已解决：`src/app/opengraph-image.tsx` 用 `next/og` 在构建期生成 1200×630 分享图（品牌名 + Lucy Q 版形象，均来自真实素材）。
+6. **素材来源**：产品图标取自各产品仓库官方资源——Lyra `LyraPass/site/favicon.png`、Scorpius `Scorpius/design/icon-1024.png`、Virgo `ToDo/apps/desktop/icon/icon-1024.png`、Pyxis `mcm/design/icon-1024.png`、Libra `work/site/assets/apple-touch-icon.png`；IP 形象取自 `opc/ip-board/lucy_chibi_preview.png` 与 `opc/ip/lucy_01_front.png`；站点 favicon 复用 Lucy Q 版图。
