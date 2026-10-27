@@ -35,7 +35,19 @@ export default async function ProductPage({
     <div className="mx-auto max-w-(--container-page) px-6 py-24">
       <p className="section-eyebrow">PRODUCT</p>
       <div className="mt-1 flex flex-wrap items-center gap-3">
-        <h1 className="text-3xl font-bold text-white">{product.name}</h1>
+        <h1 className="flex items-center gap-3 text-3xl font-bold text-white">
+          {product.image && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={product.image}
+              alt=""
+              width={56}
+              height={56}
+              className="h-14 w-14 rounded-xl"
+            />
+          )}
+          {product.name}
+        </h1>
         <span className="chip chip-glow">{statusLabels[product.status]}</span>
         {product.statusNote && (
           <span className="text-xs text-ink-500">{product.statusNote}</span>

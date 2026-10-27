@@ -23,7 +23,20 @@ export function ProductsSection({ products }: { products: Product[] }) {
             className="glass-card glass-card-hover flex flex-col p-5"
           >
             <div className="flex items-start justify-between gap-2">
-              <h3 className="text-base font-semibold text-white">{p.name}</h3>
+              <h3 className="flex items-center gap-2.5 text-base font-semibold text-white">
+                {p.image && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={p.image}
+                    alt=""
+                    width={40}
+                    height={40}
+                    loading="lazy"
+                    className="h-10 w-10 rounded-[10px]"
+                  />
+                )}
+                {p.name}
+              </h3>
               <span
                 className={`chip ${p.status === "in-development" ? "chip-glow" : ""}`}
               >

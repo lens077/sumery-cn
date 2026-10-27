@@ -19,7 +19,20 @@ export default function ProductsPage() {
             href={`/products/${p.slug}/`}
             className="glass-card glass-card-hover block p-6"
           >
-            <h2 className="text-base font-semibold text-white">{p.name}</h2>
+            <h2 className="flex items-center gap-2.5 text-base font-semibold text-white">
+              {p.image && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={p.image}
+                  alt=""
+                  width={40}
+                  height={40}
+                  loading="lazy"
+                  className="h-10 w-10 rounded-[10px]"
+                />
+              )}
+              {p.name}
+            </h2>
             <p className="mt-1 text-sm text-ink-400">{p.tagline}</p>
             <p className="mt-2 text-sm leading-6 text-ink-500">
               {p.description}

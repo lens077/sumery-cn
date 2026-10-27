@@ -8,6 +8,7 @@ import type { Product } from "@/lib/content-schema";
 export const products: Product[] = [
   {
     slug: "lyra",
+    image: "/images/products/lyra.png",
     name: "Sumery Lyra",
     tagline: "本地优先的零知识密码管理器",
     description:
@@ -20,6 +21,7 @@ export const products: Product[] = [
   },
   {
     slug: "scorpius",
+    image: "/images/products/scorpius.png",
     name: "Sumery Scorpius",
     tagline: "记住每一次复制的剪贴板管理器",
     description:
@@ -32,6 +34,7 @@ export const products: Product[] = [
   },
   {
     slug: "virgo",
+    image: "/images/products/virgo.png",
     name: "Sumery Virgo",
     tagline: "给 AI 协作开发者的本地任务对账器",
     description:
@@ -44,6 +47,7 @@ export const products: Product[] = [
   },
   {
     slug: "pyxis",
+    image: "/images/products/pyxis.png",
     name: "Sumery Pyxis",
     tagline: "开源的桌面项目规划工具",
     description:
@@ -56,6 +60,7 @@ export const products: Product[] = [
   },
   {
     slug: "libra",
+    image: "/images/products/libra.png",
     name: "Sumery Libra",
     tagline: "打工人身心健康观测",
     description:

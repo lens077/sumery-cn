@@ -14,6 +14,14 @@ export default function AboutPage() {
       <h1 className="mt-1 text-3xl font-bold text-white">
         Sumery · 希曼的工作室
       </h1>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/images/brand/lucy-chibi.png"
+        alt="希曼 IP 形象 Lucy 的 Q 版立绘"
+        width={160}
+        height={160}
+        className="mt-6 h-40 w-40 rounded-2xl border border-line"
+      />
       <div className="mt-8 max-w-2xl space-y-5 leading-7 text-ink-500">
         <p>
           Sumery 是独立开发者 <strong className="text-white">希曼</strong>{" "}

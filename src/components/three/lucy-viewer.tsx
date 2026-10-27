@@ -32,9 +32,8 @@ export function LucyViewer() {
           await import("three/addons/controls/OrbitControls.js");
         const { RoomEnvironment } =
           await import("three/addons/environments/RoomEnvironment.js");
-        const { MeshoptDecoder } = await import(
-          "three/addons/libs/meshopt_decoder.module.js"
-        );
+        const { MeshoptDecoder } =
+          await import("three/addons/libs/meshopt_decoder.module.js");
         if (disposed) return;
 
         const renderer = new THREE.WebGLRenderer({
@@ -54,12 +53,9 @@ export function LucyViewer() {
 
         const gltf = await new Promise<{ scene: ThreeNS.Group }>(
           (resolve, reject) => {
-            new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).load(
-              "/models/lucy-low.glb",
-              resolve,
-              undefined,
-              reject,
-            );
+            new GLTFLoader()
+              .setMeshoptDecoder(MeshoptDecoder)
+              .load("/models/lucy-low.glb", resolve, undefined, reject);
           },
         );
         if (disposed) {

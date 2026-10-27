@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     url: "https://sumery.cn",
     siteName: "Sumery 希曼",
     locale: "zh_CN",
-    images: ["/images/og/opengraph-image.png"],
   },
 };
 
@@ -28,7 +27,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="zh-CN" className="h-full antialiased" data-scroll-behavior="smooth">
+    <html
+      lang="zh-CN"
+      className="h-full antialiased"
+      data-scroll-behavior="smooth"
+    >
       <body className="flex min-h-full flex-col">
         <script
           type="application/ld+json"
