@@ -2,7 +2,7 @@
 # image.tag / image.digest 由 make k8s-release 回写，源是 values.yaml。
 image:
   tag: "492492a"
-  digest: "$MY_DIGEST"
+  digest: "sha256:63d6cff70ac49cee3aedf5d5222ba867bf55db6736003de1a51bd219517107cf"
 
 route:
   hosts: [sumery.apikv.com, sumery.dev.test]

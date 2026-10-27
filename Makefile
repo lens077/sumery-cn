@@ -70,7 +70,7 @@ k8s-release:
 	digest=$$(docker buildx imagetools inspect $(SITE_IMG):$(TAG) | sed -n 's/^Digest:[[:space:]]*//p'); \
 	MY_DIGEST=$$digest node -e 'const fs=require("fs");const p="$(VALUES_PROD)";let s=fs.readFileSync(p,"utf8");\
 	  s=s.replace(/(tag:\s*)"[^"]*"/,`$$1"$(TAG)"`);\
-	  s=s.replace(/(digest:\s*)"[^"]*"/,`$$1"$$MY_DIGEST"`);\
+	  s=s.replace(/(digest:\s*)"[^"]*"/,`${process.env.MY_DIGEST}`);\
 	  fs.writeFileSync(p,s);'
 	@imgs=$$(helm template sumery $(CHART) -f $(CHART)/values.yaml -f $(VALUES_PROD) \
 	   | sed -nE 's/^[[:space:]]+image: //p' | sort -u); echo "$$imgs"; \
