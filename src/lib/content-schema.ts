@@ -29,6 +29,8 @@ export const productSchema = z.object({
   platforms: z.array(z.string()).optional(),
   priceLabel: z.string().optional(),
   websiteUrl: z.string().url().optional(),
+  overseasUrl: z.string().url().optional(),
+  screenshot: z.string().optional(),
   downloadUrl: z.string().url().optional(),
   repositoryUrl: z.string().url().optional(),
   image: z.string().optional(),

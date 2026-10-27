@@ -55,6 +55,7 @@
 1. **部署凭证缺失**：未获得 sumery.cn 的托管平台与 DNS 权限，未执行生产部署与线上 smoke test；不虚报部署成功。
 2. **Lucy 模型许可证**：商用复用前需确认。
 3. **产品价格/下载地址**：各产品仓库未提供公开下载渠道，站点隐藏这些字段，不编造；确认后在 `src/content/products.ts` 补 `priceLabel`/`downloadUrl`。
-4. **Lepus / Corvus**：本地无对应仓库、blog 无相关记录，开放状态标为「待确认」，未提供游玩链接；核验后补 `playUrl`。
+4. **产品官网链接（已核验，2026-10-28 实测 HTTP 200）**：Lyra https://lyrapass.apikv.com/、Scorpius https://scorpius.apikv.com（海外 https://c34dce54.scorpius-overseas.pages.dev/）、Virgo https://virgo.apikv.com/zh/（海外 https://virgo-overseas.pages.dev/zh/）、Pyxis https://mcm.apikv.com、Libra https://libra.apikv.com（海外 https://71968379.libra-overseas.pages.dev/）。产品卡片中部实机截图为 Playwright 对各官网首页 1600×1000@1.5x 实拍（public/images/products/*-shot.jpg）。
+5. **Lepus / Corvus**：本地无对应仓库、blog 无相关记录，开放状态标为「待确认」，未提供游玩链接；核验后补 `playUrl`。
 5. ~~OG 分享图~~ 已解决：`src/app/opengraph-image.tsx` 用 `next/og` 在构建期生成 1200×630 分享图（品牌名 + Lucy Q 版形象，均来自真实素材）。
 6. **素材来源**：产品图标取自各产品仓库官方资源——Lyra `LyraPass/site/favicon.png`、Scorpius `Scorpius/design/icon-1024.png`、Virgo `ToDo/apps/desktop/icon/icon-1024.png`、Pyxis `mcm/design/icon-1024.png`、Libra `work/site/assets/apple-touch-icon.png`；IP 形象取自 `opc/ip-board/lucy_chibi_preview.png` 与 `opc/ip/lucy_01_front.png`；站点 favicon 复用 Lucy Q 版图。

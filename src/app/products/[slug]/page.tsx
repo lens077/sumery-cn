@@ -66,7 +66,37 @@ export default async function ProductPage({
           ))}
         </div>
       )}
-      <div className="mt-8 flex flex-wrap gap-4">
+      {product.screenshot && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={product.screenshot}
+          alt={`${product.name} 官网首页截图`}
+          width={1600}
+          height={1000}
+          className="mt-8 w-full rounded-2xl border border-line"
+        />
+      )}
+      <div className="mt-8 flex flex-wrap items-center gap-6">
+        {product.websiteUrl && (
+          <a
+            className="cta-primary"
+            href={product.websiteUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            访问官网（国内）↗
+          </a>
+        )}
+        {product.overseasUrl && (
+          <a
+            className="cta-secondary"
+            href={product.overseasUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            官网（海外）↗
+          </a>
+        )}
         {product.repositoryUrl && (
           <a
             className="cta-secondary"

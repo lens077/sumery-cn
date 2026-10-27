@@ -5,6 +5,109 @@ import type { Game } from "@/lib/content-schema";
 import { SectionHeader } from "@/components/home/article-card";
 import Link from "next/link";
 
+export function ExternalSiteLinks({
+  product,
+  className,
+}: {
+  product: Product;
+  className?: string;
+}) {
+  if (!product.websiteUrl && !product.overseasUrl) return null;
+  return (
+    <div className={className}>
+      {product.websiteUrl && (
+        <a
+          href={product.websiteUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-sky-accent hover:underline"
+        >
+          官网（国内）↗
+        </a>
+      )}
+      {product.overseasUrl && (
+        <a
+          href={product.overseasUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-sky-accent hover:underline"
+        >
+          官网（海外）↗
+        </a>
+      )}
+    </div>
+  );
+}
+
+export function ProductCard({ product: p }: { product: Product }) {
+  return (
+    <article className="glass-card glass-card-hover flex flex-col overflow-hidden">
+      {p.screenshot && (
+        <a
+          href={p.websiteUrl ?? p.overseasUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`访问 ${p.name} 官网`}
+          className="block border-b border-line"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={p.screenshot}
+            alt={`${p.name} 官网首页截图`}
+            width={1600}
+            height={1000}
+            loading="lazy"
+            className="aspect-[16/10] w-full object-cover object-top"
+          />
+        </a>
+      )}
+      <div className="flex flex-1 flex-col p-6">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="flex items-center gap-2.5 text-lg font-semibold text-white">
+            {p.image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={p.image}
+                alt=""
+                width={40}
+                height={40}
+                loading="lazy"
+                className="h-10 w-10 rounded-[10px]"
+              />
+            )}
+            {p.name}
+          </h3>
+          <span
+            className={`chip ${p.status === "in-development" ? "chip-glow" : ""}`}
+          >
+            {statusLabels[p.status]}
+          </span>
+        </div>
+        <p className="mt-2 text-sm font-medium text-ink-400">{p.tagline}</p>
+        <p className="mt-2 flex-1 text-sm leading-6 text-ink-500">
+          {p.description}
+        </p>
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          {p.platforms?.map((pl) => (
+            <span key={pl} className="chip">
+              {pl}
+            </span>
+          ))}
+        </div>
+        <div className="mt-4 flex flex-wrap items-center gap-5">
+          <ExternalSiteLinks product={p} className="flex flex-wrap gap-5" />
+          <Link
+            href={`/products/${p.slug}/`}
+            className="text-sm font-medium text-ink-400 hover:text-white"
+          >
+            了解详情 →
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function ProductsSection({ products }: { products: Product[] }) {
   return (
     <section
@@ -16,51 +119,9 @@ export function ProductsSection({ products }: { products: Product[] }) {
         title="Sumery 产品"
         moreHref="/products/"
       />
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-6 lg:grid-cols-2">
         {products.map((p) => (
-          <article
-            key={p.slug}
-            className="glass-card glass-card-hover flex flex-col p-5"
-          >
-            <div className="flex items-start justify-between gap-2">
-              <h3 className="flex items-center gap-2.5 text-base font-semibold text-white">
-                {p.image && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={p.image}
-                    alt=""
-                    width={40}
-                    height={40}
-                    loading="lazy"
-                    className="h-10 w-10 rounded-[10px]"
-                  />
-                )}
-                {p.name}
-              </h3>
-              <span
-                className={`chip ${p.status === "in-development" ? "chip-glow" : ""}`}
-              >
-                {statusLabels[p.status]}
-              </span>
-            </div>
-            <p className="mt-2 text-sm font-medium text-ink-400">{p.tagline}</p>
-            <p className="mt-2 flex-1 text-sm leading-6 text-ink-500">
-              {p.description}
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              {p.platforms?.map((pl) => (
-                <span key={pl} className="chip">
-                  {pl}
-                </span>
-              ))}
-            </div>
-            <Link
-              href={`/products/${p.slug}/`}
-              className="mt-4 text-sm font-medium text-sky-accent hover:underline"
-            >
-              了解详情 →
-            </Link>
-          </article>
+          <ProductCard key={p.slug} product={p} />
         ))}
       </div>
     </section>

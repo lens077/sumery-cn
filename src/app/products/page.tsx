@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { products } from "@/content/products";
 import { SectionHeader } from "@/components/home/article-card";
+import { ProductCard } from "@/components/home/sections";
 
 export const metadata: Metadata = {
   title: "Sumery 产品",
@@ -12,32 +13,9 @@ export default function ProductsPage() {
   return (
     <div className="mx-auto max-w-(--container-page) px-6 py-24">
       <SectionHeader eyebrow="PRODUCTS" title="Sumery 产品" />
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 lg:grid-cols-2">
         {products.map((p) => (
-          <a
-            key={p.slug}
-            href={`/products/${p.slug}/`}
-            className="glass-card glass-card-hover block p-6"
-          >
-            <h2 className="flex items-center gap-2.5 text-base font-semibold text-white">
-              {p.image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={p.image}
-                  alt=""
-                  width={40}
-                  height={40}
-                  loading="lazy"
-                  className="h-10 w-10 rounded-[10px]"
-                />
-              )}
-              {p.name}
-            </h2>
-            <p className="mt-1 text-sm text-ink-400">{p.tagline}</p>
-            <p className="mt-2 text-sm leading-6 text-ink-500">
-              {p.description}
-            </p>
-          </a>
+          <ProductCard key={p.slug} product={p} />
         ))}
       </div>
     </div>

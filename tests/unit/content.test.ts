@@ -36,6 +36,19 @@ describe("内容事实源", () => {
     );
   });
 
+  it("产品官网域名只允许已核验的 apikv.com 与 pages.dev，且都有官网入口", () => {
+    products.forEach((p) => {
+      expect(p.websiteUrl).toMatch(
+        /^https:\/\/(scorpius|lyrapass|virgo|libra|mcm)\.apikv\.com(\/.*)?$/,
+      );
+      if (p.overseasUrl) {
+        expect(p.overseasUrl).toMatch(
+          /^https:\/\/[a-z0-9.-]+\.pages\.dev(\/.*)?$/,
+        );
+      }
+    });
+  });
+
   it("游戏在入口核验前不得提供游玩链接", () => {
     games.forEach((g) => expect(g.playUrl).toBeUndefined());
   });

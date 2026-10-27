@@ -9,6 +9,8 @@ export const products: Product[] = [
   {
     slug: "lyra",
     image: "/images/products/lyra.png",
+    websiteUrl: "https://lyrapass.apikv.com/",
+    screenshot: "/images/products/lyra-shot.jpg",
     name: "Sumery Lyra",
     tagline: "本地优先的零知识密码管理器",
     description:
@@ -22,6 +24,9 @@ export const products: Product[] = [
   {
     slug: "scorpius",
     image: "/images/products/scorpius.png",
+    websiteUrl: "https://scorpius.apikv.com",
+    overseasUrl: "https://c34dce54.scorpius-overseas.pages.dev/",
+    screenshot: "/images/products/scorpius-shot.jpg",
     name: "Sumery Scorpius",
     tagline: "记住每一次复制的剪贴板管理器",
     description:
@@ -35,6 +40,9 @@ export const products: Product[] = [
   {
     slug: "virgo",
     image: "/images/products/virgo.png",
+    websiteUrl: "https://virgo.apikv.com/zh/",
+    overseasUrl: "https://virgo-overseas.pages.dev/zh/",
+    screenshot: "/images/products/virgo-shot.jpg",
     name: "Sumery Virgo",
     tagline: "给 AI 协作开发者的本地任务对账器",
     description:
@@ -48,6 +56,8 @@ export const products: Product[] = [
   {
     slug: "pyxis",
     image: "/images/products/pyxis.png",
+    websiteUrl: "https://mcm.apikv.com",
+    screenshot: "/images/products/pyxis-shot.jpg",
     name: "Sumery Pyxis",
     tagline: "开源的桌面项目规划工具",
     description:
@@ -61,6 +71,9 @@ export const products: Product[] = [
   {
     slug: "libra",
     image: "/images/products/libra.png",
+    websiteUrl: "https://libra.apikv.com",
+    overseasUrl: "https://71968379.libra-overseas.pages.dev/",
+    screenshot: "/images/products/libra-shot.jpg",
     name: "Sumery Libra",
     tagline: "打工人身心健康观测",
     description:
