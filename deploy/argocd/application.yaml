@@ -1,0 +1,40 @@
+# ArgoCD Application：渲染镜像仓库 main 分支上的 chart。
+# 集群连 GitHub 不稳定（control-tower 2026-09-27 实测超时），常规路径是 GitLab 镜像：
+# make k8s-release 会回写镜像 tag 后推 origin + gitlab，GitLab webhook 通知 Argo 立即刷新。
+# 首次接管：先以 automated.enabled=false apply，手动 sync 一次确认后再开自动同步。
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sumery-prod
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: sumery
+    app.kubernetes.io/managed-by: git
+    app.kubernetes.io/environment: prod
+spec:
+  project: sumery
+  source:
+    repoURL: https://gitlab.com/sumery/sumery-cn.git
+    targetRevision: main
+    path: deploy/chart/sumery
+    helm:
+      releaseName: sumery
+      valueFiles:
+        - values.yaml
+        - values-prod.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sumery
+  syncPolicy:
+    automated:
+      enabled: true
+      selfHeal: true
+  # 与 scorpius-prod 同因：API Server 会给 HTTPRoute 补默认 group/kind/weight
+  ignoreDifferences:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      jqPathExpressions:
+        - .spec.parentRefs[]?.group
+        - .spec.parentRefs[]?.kind
+        - .spec.rules[]?.backendRefs[]?.group
+        - .spec.rules[]?.backendRefs[]?.kind

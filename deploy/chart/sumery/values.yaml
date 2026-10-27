@@ -1,0 +1,25 @@
+fullnameOverride: sumery
+
+image:
+  repository: ccr.ccs.tencentyun.com/sumery/sumery-site
+  tag: ""
+  pullPolicy: IfNotPresent
+  # CI 回写 digest 后填在这里，与 tag 一起做不可变引用
+  digest: ""
+
+web:
+  replicas: 2
+  # nginx-unprivileged 的运行用户
+  runAsUser: 101
+  runAsGroup: 101
+  resources:
+    requests: { cpu: 20m, memory: 64Mi }
+    limits: { memory: 256Mi }
+
+route:
+  enabled: true
+  hosts: [sumery.apikv.com, sumery.dev.test]
+  gateway:
+    name: cilium-gateway
+    namespace: default
+    httpsSection: https

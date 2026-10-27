@@ -1,0 +1,7 @@
+apiVersion: v2
+name: sumery
+description: sumery.cn —— Next.js 静态官网（nginx + Cilium Gateway HTTPRoute）
+type: application
+# chart 结构变了才升 version；镜像版本不在这里，见 values-prod.yaml 的 image.tag（发布脚本回写）
+version: 0.1.0
+appVersion: "1"

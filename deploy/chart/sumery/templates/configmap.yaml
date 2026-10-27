@@ -1,0 +1,11 @@
+{{- $name := "sumery-web" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $name }}-nginx
+  labels:
+    {{- include "sumery.labels" . | nindent 4 }}
+    {{- include "sumery.selector" . | nindent 4 }}
+data:
+  default.conf: |
+    {{- .Files.Get "files/nginx.conf" | nindent 4 }}

@@ -1,0 +1,25 @@
+# ArgoCD AppProject：只允许从镜像仓库部署到 sumery 命名空间，只放行 chart 用到的资源类型
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: sumery
+  namespace: argocd
+  labels:
+    app.kubernetes.io/part-of: sumery
+    app.kubernetes.io/managed-by: git
+spec:
+  description: sumery.cn static site Helm GitOps project
+  sourceRepos:
+    # 官方仓；集群拉 GitHub 不稳定时改用 GitLab 镜像（见 Makefile k8s-params）
+    - https://github.com/lens077/sumery-cn.git
+    - https://gitlab.com/sumery/sumery-cn.git
+  destinations:
+    - name: in-cluster
+      server: https://kubernetes.default.svc
+      namespace: sumery
+  clusterResourceWhitelist: []
+  namespaceResourceWhitelist:
+    - { group: "", kind: ConfigMap }
+    - { group: "", kind: Service }
+    - { group: apps, kind: Deployment }
+    - { group: gateway.networking.k8s.io, kind: HTTPRoute }

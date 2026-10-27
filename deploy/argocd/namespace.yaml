@@ -1,0 +1,7 @@
+# 命名空间由平台侧预先创建（AppProject 不给集群级权限，Application 也关了 CreateNamespace）
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sumery
+  labels:
+    app.kubernetes.io/part-of: sumery
