@@ -56,7 +56,7 @@ export const products: Product[] = [
   {
     slug: "pyxis",
     image: "/images/products/pyxis.png",
-    websiteUrl: "https://mcm.apikv.com",
+    websiteUrl: "https://pyxis.apikv.com",
     screenshot: "/images/products/pyxis-shot.jpg",
     name: "Sumery Pyxis",
     tagline: "开源的桌面项目规划工具",
