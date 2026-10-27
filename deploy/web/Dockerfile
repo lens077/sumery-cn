@@ -4,10 +4,9 @@ FROM node:22-alpine AS site
 RUN npm install -g pnpm@12.6.0
 WORKDIR /build
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-# esbuild 的安装脚本必须放行，否则 install 失败
-RUN pnpm config set enable-pre-post-scripts true \
-	&& pnpm install --frozen-lockfile --ignore-scripts \
-	&& pnpm rebuild esbuild
+COPY pnpm-workspace.yaml ./
+# allowBuilds 已在 pnpm-workspace.yaml 里放行 esbuild，install 直接跑
+RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 
