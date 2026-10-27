@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-navy-950: #0a1128;
+  --color-navy-900: #0d1733;
+  --color-navy-800: #122046;
+  --color-navy-700: #1a2d5c;
+  --color-ink-500: #8b9cc4;
+  --color-ink-400: #a8b8d8;
+  --color-line: #24407a;
+  --color-glow: #f0954a;
+  --color-glow-soft: #f4b57a;
+  --color-sky-accent: #5b8ff9;
+  --font-sans: system-ui, -apple-system, "PingFang SC", "Noto Sans SC",
+    "Microsoft YaHei", sans-serif;
+  --container-page: 1280px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-navy-950);
+  color: #f2f5fb;
+  font-family: var(--font-sans);
+}
+
+/* 细蓝描边 + 低强度玻璃质感卡片 */
+.glass-card {
+  background: color-mix(in srgb, var(--color-navy-800) 72%, transparent);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  backdrop-filter: blur(6px);
+}
+
+.glass-card-hover {
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.glass-card-hover:hover {
+  border-color: var(--color-sky-accent);
+  transform: translateY(-2px);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 9999px;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--color-ink-400);
+  white-space: nowrap;
+}
+
+.chip-glow {
+  border-color: color-mix(in srgb, var(--color-glow) 55%, transparent);
+  color: var(--color-glow-soft);
+}
+
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background: var(--color-glow);
+  color: #20120a;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  transition: filter 0.2s ease;
+}
+.cta-primary:hover {
+  filter: brightness(1.1);
+}
+
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-line);
+  color: #f2f5fb;
+  padding: 0.75rem 1.75rem;
+  transition: border-color 0.2s ease;
+}
+.cta-secondary:hover {
+  border-color: var(--color-sky-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-sky-accent);
+  outline-offset: 2px;
+}
+
+.section-eyebrow {
+  font-size: 0.8125rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-500);
+}
+
+/* Hero 落日山湖场景：纯 CSS 分层，不依赖外部图片 */
+.hero-scene {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    #101c3f 0%,
+    #25366b 30%,
+    #6f5a8e 52%,
+    #d97a4a 66%,
+    #f0a35e 74%,
+    #2a3a6b 100%
+  );
+}
+.hero-scene .sun {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 11vw;
+  height: 11vw;
+  min-width: 90px;
+  min-height: 90px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, #ffd9a0 0%, #f5a25c 60%, transparent 75%);
+  filter: blur(1px);
+}
+.hero-scene .mountains {
+  position: absolute;
+  inset-inline: 0;
+  top: 46%;
+  line-height: 0;
+}
+.hero-scene .water {
+  position: absolute;
+  inset-inline: 0;
+  top: 66%;
+  bottom: 0;
+  background: linear-gradient(180deg, #22335f 0%, #0d1733 100%);
+}
+.hero-scene .water::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 38%;
+  background: linear-gradient(180deg, #e8965c33 0%, transparent 100%);
+}
+.hero-scene .glint {
+  position: absolute;
+  height: 2px;
+  border-radius: 2px;
+  background: #f4b57a;
+  opacity: 0.35;
+}
+.hero-scene .fade-bottom {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 30%;
+  background: linear-gradient(180deg, transparent 0%, var(--color-navy-950) 100%);
 }
