@@ -1,19 +1,20 @@
 import { z } from "zod";
 
+// 五档状态对齐 design-guide v1.0：已上线 / 开源 / 实验中 / 开发中 / 未发布
 export const PRODUCT_STATUSES = [
   "released",
   "open-source",
   "beta",
   "in-development",
-  "paused",
+  "unreleased",
 ] as const;
 
 export const statusLabels: Record<(typeof PRODUCT_STATUSES)[number], string> = {
-  released: "已发布",
+  released: "已上线",
   "open-source": "开源",
-  beta: "公测",
+  beta: "实验中",
   "in-development": "开发中",
-  paused: "暂停维护",
+  unreleased: "未发布",
 };
 
 export const productSchema = z.object({

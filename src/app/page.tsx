@@ -1,12 +1,12 @@
 import { Hero } from "@/components/home/hero";
+import { ProductsSection, GamesSection } from "@/components/home/sections";
 import {
-  ProductsSection,
-  ProjectsSection,
-  GamesSection,
-} from "@/components/home/sections";
+  PlatformArchSection,
+  TechPracticeSection,
+} from "@/components/home/practice-sections";
+import { directoryEntries } from "@/content/directory";
 import { SectionHeader, ArticleCard } from "@/components/home/article-card";
 import { products } from "@/content/products";
-import { projects } from "@/content/projects";
 import { games } from "@/content/games";
 import postsData from "../../data/blog-posts.json";
 import type { BlogPost } from "@/lib/rss/schema";
@@ -36,7 +36,16 @@ export default function HomePage() {
           )}
         </div>
         <ProductsSection products={products} />
-        <ProjectsSection projects={projects} />
+        <PlatformArchSection
+          entries={directoryEntries.filter(
+            (e) => e.category === "platform-arch",
+          )}
+        />
+        <TechPracticeSection
+          entries={directoryEntries.filter(
+            (e) => e.category === "tech-practice",
+          )}
+        />
         <GamesSection games={games} />
       </section>
     </>

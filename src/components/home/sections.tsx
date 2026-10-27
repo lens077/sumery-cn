@@ -1,6 +1,5 @@
 import type { Product } from "@/lib/content-schema";
 import { statusLabels } from "@/lib/content-schema";
-import type { Project } from "@/lib/content-schema";
 import type { Game } from "@/lib/content-schema";
 import { SectionHeader } from "@/components/home/article-card";
 import Link from "next/link";
@@ -124,61 +123,6 @@ export function ProductsSection({ products }: { products: Product[] }) {
           <ProductCard key={p.slug} product={p} />
         ))}
       </div>
-    </section>
-  );
-}
-
-export function ProjectsSection({ projects }: { projects: Project[] }) {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
-  return (
-    <section
-      className="mx-auto max-w-(--container-page) px-6 py-20"
-      id="projects"
-    >
-      <SectionHeader
-        eyebrow="ENGINEERING"
-        title="工程项目"
-        moreHref="/projects/"
-      />
-      <div className="grid gap-5 lg:grid-cols-2">
-        {featured.map((p) => (
-          <article key={p.slug} className="glass-card glass-card-hover p-7">
-            <h3 className="text-lg font-semibold text-white">{p.name}</h3>
-            <p className="mt-1 text-sm text-glow-soft">{p.tagline}</p>
-            <p className="mt-3 text-sm leading-6 text-ink-500">
-              {p.description}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {p.tags.map((t) => (
-                <span key={t} className="chip">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-      <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-        {rest.map((p) => (
-          <li
-            key={p.slug}
-            className="glass-card flex items-center justify-between gap-4 p-4"
-          >
-            <div>
-              <h3 className="text-sm font-semibold text-white">{p.name}</h3>
-              <p className="mt-0.5 text-xs text-ink-500">{p.tagline}</p>
-            </div>
-            <div className="flex flex-wrap justify-end gap-1.5">
-              {p.tags.slice(0, 2).map((t) => (
-                <span key={t} className="chip">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

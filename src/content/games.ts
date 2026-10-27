@@ -12,7 +12,7 @@ export const games: Game[] = [
     tagline: "浏览器小游戏",
     description: "Sumery 游戏子线作品，浏览器直接体验，无需安装。",
     status: "in-development",
-    statusNote: "开放状态待确认，入口补全后更新",
+    statusNote: "实验项目，公开入口待定",
   },
   {
     slug: "corvus",
@@ -20,6 +20,6 @@ export const games: Game[] = [
     tagline: "浏览器小游戏",
     description: "Sumery 游戏子线作品，浏览器直接体验，无需安装。",
     status: "in-development",
-    statusNote: "开放状态待确认，入口补全后更新",
+    statusNote: "实验项目，公开入口待定",
   },
 ];

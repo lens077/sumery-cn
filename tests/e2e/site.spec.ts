@@ -5,7 +5,7 @@ test.describe("首页", () => {
   test("模块顺序：Hero → 文章 → 产品 → 项目 → 游戏", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("h1")).toHaveCount(1);
-    const ids = ["#products", "#projects", "#games"];
+    const ids = ["#products", "#platform", "#tech-practice", "#games"];
     for (const id of ids) await expect(page.locator(id)).toBeAttached();
     // 首页展示 3 篇真实文章，链接指向博客原文
     const links = await page
@@ -52,6 +52,23 @@ test.describe("路由与元数据", () => {
   test("sitemap 与 robots 可访问", async ({ request }) => {
     expect((await request.get("/sitemap.xml")).status()).toBe(200);
     expect((await request.get("/robots.txt")).status()).toBe(200);
+  });
+
+  test("全部项目：分类筛选+搜索组合、URL 参数与空状态", async ({ page }) => {
+    await page.goto("/projects/");
+    await expect(page.getByText("共 15 个项目")).toBeVisible();
+    // URL 分类参数 ?type=tech-practice
+    await page.goto("/projects/?type=tech-practice");
+    await expect(page.getByRole("tab", { selected: true })).toHaveText(
+      "技术实践",
+    );
+    await expect(page.getByText(/共 4 个项目/)).toBeVisible();
+    // 搜索与筛选组合出空结果
+    await page.getByPlaceholder("搜索项目、标签或关键词…").fill("zzz-no-match");
+    await expect(page.getByText("没有找到匹配项目")).toBeVisible();
+    // 清空恢复
+    await page.getByPlaceholder("搜索项目、标签或关键词…").fill("");
+    await expect(page.getByText("没有找到匹配项目")).toBeHidden();
   });
 
   test("canonical 与 og 元数据", async ({ page }) => {

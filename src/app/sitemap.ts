@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/content/products";
-import { projects } from "@/content/projects";
-import { games } from "@/content/games";
+import { directoryEntries } from "@/content/directory";
 
 const BASE = "https://sumery.cn";
 
@@ -20,7 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPaths.map((p) => ({ url: `${BASE}/${p}` })),
     ...products.map((p) => ({ url: `${BASE}/products/${p.slug}/` })),
-    ...projects.map((p) => ({ url: `${BASE}/projects/${p.slug}/` })),
-    ...games.map((g) => ({ url: `${BASE}/games/${g.slug}/` })),
+    ...directoryEntries
+      .filter((e) => e.category !== "product" && e.category !== "game")
+      .map((e) => ({ url: `${BASE}/projects/?type=${e.category}` })),
   ];
 }

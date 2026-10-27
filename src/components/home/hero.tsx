@@ -43,20 +43,22 @@ export function Hero() {
       <div className="relative z-10 mx-auto grid max-w-(--container-page) items-center gap-12 px-6 pb-28 pt-44 lg:grid-cols-[46%_54%] lg:pb-36 lg:pt-52">
         <div>
           <p className="text-sm font-medium tracking-widest text-glow-soft">
-            SUMERY STUDIO · 独立开发者 · 产品工作室
+            SUMERY CREATIVE STUDIO · INDEPENDENT BUILDER
           </p>
-          <h1 className="mt-4 text-4xl font-bold leading-tight text-white sm:text-5xl">
-            让每一个工具，都成为你更好的生活方式
+          <h1 className="mt-4 font-serif text-4xl font-semibold italic leading-tight text-white sm:text-5xl">
+            Build Useful Tools,
+            <br />
+            Create Better Experiences.
           </h1>
           <p className="mt-5 max-w-xl text-base leading-7 text-ink-400">
-            专注于效率工具、开发者工具与独立产品，用代码创造价值，用产品解决真实问题。
+            用代码构建有用的产品，用技术解决实际问题。在创造中持续实践，在实践中持续进化。
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/products/" className="cta-primary">
-              探索全部产品
+            <Link href="#products" className="cta-primary">
+              探索我的作品
             </Link>
-            <Link href="/about/" className="cta-secondary">
-              了解工作室
+            <Link href="/projects/" className="cta-secondary">
+              查看全部项目 ↗
             </Link>
           </div>
           <p className="mt-6 text-sm tracking-wide text-ink-500">

@@ -79,8 +79,8 @@ export const products: Product[] = [
     description:
       "把工作时长、疲劳信号与身体数据放在一起，本地计算，不猜数字。没有数据时界面会明说。",
     category: "desktop",
-    status: "in-development",
-    statusNote: "开发迭代中，发布时间待确认",
+    status: "unreleased",
+    statusNote: "尚未公开发布，发布节奏以仓库为准",
     repositoryUrl: "https://github.com/lens077/Libra",
     featured: true,
   },
