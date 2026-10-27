@@ -93,13 +93,11 @@ export function LucyViewer() {
         window.addEventListener("resize", resize);
 
         let raf = 0;
-        const clock = new THREE.Clock();
         const tick = () => {
           controls.update();
           renderer.render(scene, camera);
           raf = requestAnimationFrame(tick);
         };
-        void clock;
         tick();
 
         setState("ready");
