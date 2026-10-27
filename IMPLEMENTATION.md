@@ -59,3 +59,11 @@
 5. **Lepus / Corvus**：本地无对应仓库、blog 无相关记录，开放状态标为「待确认」，未提供游玩链接；核验后补 `playUrl`。
 6. ~~OG 分享图~~ 已解决：`src/app/opengraph-image.tsx` 用 `next/og` 在构建期生成 1200×630 分享图（品牌名 + Lucy Q 版形象，均来自真实素材）。
 7. **素材来源**：产品图标取自各产品仓库官方资源——Lyra `LyraPass/site/favicon.png`、Scorpius `Scorpius/design/icon-1024.png`、Virgo `ToDo/apps/desktop/icon/icon-1024.png`、Pyxis `mcm/design/icon-1024.png`、Libra `work/site/assets/apple-touch-icon.png`；IP 形象取自 `opc/ip-board/lucy_chibi_preview.png` 与 `opc/ip/lucy_01_front.png`；站点 favicon 复用 Lucy Q 版图。
+
+## 设计规范 v1.0 迭代（2026-10-28，依据 Downloads/sumery_site_design/design-guide.html）
+
+- **信息架构**：首页 = Hero（英文衬线斜体标题）→ 最新博客 → 产品（实机截图大卡）→ 平台与架构 → 技术实践 → 游戏实验 → 页脚；新增 `/projects/` 全部项目目录（15 条，五类筛选 + 关键词搜索组合、空状态、`?type=` 分类参数同步 URL）。
+- **统一数据源**：`src/content/directory.ts` 聚合产品/游戏并收录平台、运维、技术实践条目；首页与目录共用。`validate-content.ts` 新增目录校验（分类枚举、仓库域名白名单、官网域名白名单、cloud-native-deploy/config-center 禁止独立收录）。
+- **状态五档**：已上线 / 开源 / 实验中 / 开发中 / 未发布（对齐原型）；Libra 标「未发布」。
+- **仓库审计证据（2026-10-28）**：kubernetes 最后提交 2026-10-25（活跃，cloud-native-deploy 已并入）；go-connect-kit 2026-10-07；go-connect-template GitHub API 核验 public、pushed 2026-09-11；go-connect-template-cli 2026-09-11；docker-deploy 2026-10-14 但按规范标「内部资产 · 待审计」且不公开仓库；CDC Pipeline 在 GitHub 检索不到公开仓库 → 标「维护状态待核验」且不挂链接。
+- **E2E**：新增目录页测试（15 条计数、`?type=tech-practice` 选中分类、搜索组合空状态与恢复），16 项全通过；单元 9 项通过。
