@@ -1,8 +1,8 @@
 # prod：集群 hosting，namespace sumery。Argo CD Application sumery-prod 只同步这一份。
 # image.tag / image.digest 由 make k8s-release 回写，源是 values.yaml。
 image:
-  tag: ""
-  digest: ""
+  tag: "492492a"
+  digest: "$MY_DIGEST"
 
 route:
   hosts: [sumery.apikv.com, sumery.dev.test]
