@@ -69,9 +69,7 @@ export function Hero() {
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-6 flex justify-center">
-        <span className="text-xs tracking-widest text-ink-500">
-          ↓ 向下滚动
-        </span>
+        <span className="text-xs tracking-widest text-ink-500">↓ 向下滚动</span>
       </div>
     </section>
   );

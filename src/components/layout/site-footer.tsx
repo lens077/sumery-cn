@@ -15,7 +15,8 @@ export function SiteFooter() {
             Sumery<span className="text-glow">·</span>希曼
           </p>
           <p className="mt-3 text-sm leading-6 text-ink-500">
-            独立开发者 · 产品工作室。专注于效率工具、开发者工具与独立产品，用代码创造价值，用产品解决真实问题。
+            独立开发者 ·
+            产品工作室。专注于效率工具、开发者工具与独立产品，用代码创造价值，用产品解决真实问题。
           </p>
         </div>
         <nav aria-label="快速导航">
@@ -52,7 +53,10 @@ export function SiteFooter() {
           <h2 className="text-sm font-semibold text-white">联系</h2>
           <ul className="mt-3 space-y-2 text-sm text-ink-500">
             <li>
-              <Link href="/contact/" className="transition-colors hover:text-white">
+              <Link
+                href="/contact/"
+                className="transition-colors hover:text-white"
+              >
                 联系页面
               </Link>
             </li>

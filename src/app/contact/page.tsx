@@ -11,7 +11,8 @@ export default function ContactPage() {
     <div className="mx-auto max-w-(--container-page) px-6 py-24">
       <h1 className="text-3xl font-bold text-white">联系</h1>
       <p className="mt-6 max-w-xl leading-7 text-ink-500">
-        产品反馈、合作与建议，欢迎通过 GitHub Issue 或博客评论区联系；渠道入口补充后会在本页更新。
+        产品反馈、合作与建议，欢迎通过 GitHub Issue
+        或博客评论区联系；渠道入口补充后会在本页更新。
       </p>
       <a
         className="cta-secondary mt-8"

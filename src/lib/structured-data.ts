@@ -20,9 +20,7 @@ export function softwareJsonLd(product: Product) {
     name: product.name,
     description: product.description,
     url: `https://sumery.cn/products/${product.slug}/`,
-    ...(product.repositoryUrl
-      ? { codeRepository: product.repositoryUrl }
-      : {}),
+    ...(product.repositoryUrl ? { codeRepository: product.repositoryUrl } : {}),
     ...(product.platforms
       ? {
           operatingSystem: product.platforms.join(", "),

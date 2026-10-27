@@ -21,7 +21,9 @@ export default function ProductsPage() {
           >
             <h2 className="text-base font-semibold text-white">{p.name}</h2>
             <p className="mt-1 text-sm text-ink-400">{p.tagline}</p>
-            <p className="mt-2 text-sm leading-6 text-ink-500">{p.description}</p>
+            <p className="mt-2 text-sm leading-6 text-ink-500">
+              {p.description}
+            </p>
           </a>
         ))}
       </div>

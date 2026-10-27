@@ -16,7 +16,9 @@ export default async function ProductJsonLdLayout({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd(product)) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(softwareJsonLd(product)),
+        }}
       />
       {children}
     </>

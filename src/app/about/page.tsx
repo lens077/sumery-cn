@@ -24,7 +24,8 @@ export default function AboutPage() {
         </p>
         <p>
           工程实践覆盖 Go 微服务、事件驱动架构、Kubernetes 与 GitOps
-          交付；这些经验同样沉淀在 <a
+          交付；这些经验同样沉淀在{" "}
+          <a
             className="text-sky-accent hover:underline"
             href="https://blog.apikv.com"
             target="_blank"

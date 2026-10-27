@@ -109,7 +109,8 @@ async function main() {
   try {
     const xml = await fetchFeed();
     const posts = parseFeed(xml);
-    if (posts.length === 0) throw new Error("RSS 解析结果为空，拒绝覆盖有效数据");
+    if (posts.length === 0)
+      throw new Error("RSS 解析结果为空，拒绝覆盖有效数据");
     const next = JSON.stringify(
       { syncedAt: new Date().toISOString(), posts },
       null,
@@ -119,10 +120,7 @@ async function main() {
     const oldPosts = lastKnownGood
       ? (JSON.parse(lastKnownGood) as { posts?: unknown }).posts
       : undefined;
-    if (
-      oldPosts &&
-      JSON.stringify(oldPosts) === JSON.stringify(posts)
-    ) {
+    if (oldPosts && JSON.stringify(oldPosts) === JSON.stringify(posts)) {
       console.log("RSS 无变化，跳过写入");
       return;
     }

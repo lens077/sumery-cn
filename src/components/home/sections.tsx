@@ -7,7 +7,10 @@ import Link from "next/link";
 
 export function ProductsSection({ products }: { products: Product[] }) {
   return (
-    <section className="mx-auto max-w-(--container-page) px-6 py-20" id="products">
+    <section
+      className="mx-auto max-w-(--container-page) px-6 py-20"
+      id="products"
+    >
       <SectionHeader
         eyebrow="PRODUCTS"
         title="Sumery 产品"
@@ -15,10 +18,15 @@ export function ProductsSection({ products }: { products: Product[] }) {
       />
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
         {products.map((p) => (
-          <article key={p.slug} className="glass-card glass-card-hover flex flex-col p-5">
+          <article
+            key={p.slug}
+            className="glass-card glass-card-hover flex flex-col p-5"
+          >
             <div className="flex items-start justify-between gap-2">
               <h3 className="text-base font-semibold text-white">{p.name}</h3>
-              <span className={`chip ${p.status === "in-development" ? "chip-glow" : ""}`}>
+              <span
+                className={`chip ${p.status === "in-development" ? "chip-glow" : ""}`}
+              >
                 {statusLabels[p.status]}
               </span>
             </div>
@@ -50,7 +58,10 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
   return (
-    <section className="mx-auto max-w-(--container-page) px-6 py-20" id="projects">
+    <section
+      className="mx-auto max-w-(--container-page) px-6 py-20"
+      id="projects"
+    >
       <SectionHeader
         eyebrow="ENGINEERING"
         title="工程项目"
@@ -61,7 +72,9 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
           <article key={p.slug} className="glass-card glass-card-hover p-7">
             <h3 className="text-lg font-semibold text-white">{p.name}</h3>
             <p className="mt-1 text-sm text-glow-soft">{p.tagline}</p>
-            <p className="mt-3 text-sm leading-6 text-ink-500">{p.description}</p>
+            <p className="mt-3 text-sm leading-6 text-ink-500">
+              {p.description}
+            </p>
             <div className="mt-4 flex flex-wrap gap-2">
               {p.tags.map((t) => (
                 <span key={t} className="chip">
@@ -74,7 +87,10 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
       </div>
       <ul className="mt-5 grid gap-3 sm:grid-cols-2">
         {rest.map((p) => (
-          <li key={p.slug} className="glass-card flex items-center justify-between gap-4 p-4">
+          <li
+            key={p.slug}
+            className="glass-card flex items-center justify-between gap-4 p-4"
+          >
             <div>
               <h3 className="text-sm font-semibold text-white">{p.name}</h3>
               <p className="mt-0.5 text-xs text-ink-500">{p.tagline}</p>
@@ -112,7 +128,9 @@ export function GamesSection({ games }: { games: Game[] }) {
                 <h3 className="text-lg font-semibold text-white">{g.name}</h3>
                 <span className="chip chip-glow">{g.statusNote}</span>
               </div>
-              <p className="mt-2 text-sm leading-6 text-ink-500">{g.description}</p>
+              <p className="mt-2 text-sm leading-6 text-ink-500">
+                {g.description}
+              </p>
               <Link
                 href={`/games/${g.slug}/`}
                 className="mt-4 inline-block text-sm font-medium text-sky-accent hover:underline"

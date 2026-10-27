@@ -26,15 +26,12 @@ export function LucyViewer() {
           throw new Error("webgl-unavailable");
         }
         const THREE = await import("three");
-        const { GLTFLoader } = await import(
-          "three/addons/loaders/GLTFLoader.js"
-        );
-        const { OrbitControls } = await import(
-          "three/addons/controls/OrbitControls.js"
-        );
-        const { RoomEnvironment } = await import(
-          "three/addons/environments/RoomEnvironment.js"
-        );
+        const { GLTFLoader } =
+          await import("three/addons/loaders/GLTFLoader.js");
+        const { OrbitControls } =
+          await import("three/addons/controls/OrbitControls.js");
+        const { RoomEnvironment } =
+          await import("three/addons/environments/RoomEnvironment.js");
         if (disposed) return;
 
         const renderer = new THREE.WebGLRenderer({

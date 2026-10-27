@@ -12,7 +12,8 @@ export const projects: Project[] = [
     description:
       "多服务电商后端：订单、支付、库存与通知拆分为独立微服务，事件驱动通信，GitOps 部署与零信任网络策略。",
     tags: ["Go", "gRPC", "Kafka", "Kubernetes", "ArgoCD"],
-    repositoryNote: "私有 GitLab 仓库（gitlab.com/sumery/ecommerce），未公开访问",
+    repositoryNote:
+      "私有 GitLab 仓库（gitlab.com/sumery/ecommerce），未公开访问",
     featured: true,
   },
   {

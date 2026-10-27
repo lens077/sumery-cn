@@ -13,8 +13,8 @@ test.describe("首页", () => {
       .count();
     expect(links).toBeGreaterThanOrEqual(3);
     // 设计图不作为整页背景：body 无大图背景
-    const bg = await page.evaluate(() =>
-      getComputedStyle(document.body).backgroundImage,
+    const bg = await page.evaluate(
+      () => getComputedStyle(document.body).backgroundImage,
     );
     expect(bg).toBe("none");
   });
@@ -31,7 +31,9 @@ test.describe("首页", () => {
     await page.setViewportSize({ width: 375, height: 720 });
     await page.goto("/");
     const overflow = await page.evaluate(
-      () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      () =>
+        document.documentElement.scrollWidth -
+        document.documentElement.clientWidth,
     );
     expect(overflow).toBeLessThanOrEqual(0);
   });

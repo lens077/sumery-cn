@@ -18,7 +18,11 @@ export default function HomePage() {
       <Hero />
       <section className="bg-navy-950">
         <div className="mx-auto max-w-(--container-page) px-6 pt-20">
-          <SectionHeader eyebrow="JOURNAL" title="最新文章" moreHref="/journal/" />
+          <SectionHeader
+            eyebrow="JOURNAL"
+            title="最新文章"
+            moreHref="/journal/"
+          />
           {posts.length === 0 ? (
             <p className="glass-card p-6 text-sm text-ink-500">
               文章正在同步，稍后再来看看。

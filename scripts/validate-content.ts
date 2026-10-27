@@ -52,18 +52,24 @@ if (existsSync("data/blog-posts.json")) {
       z.object({
         id: z.string(),
         title: z.string(),
-        url: z.string().url().refine((u) => u.startsWith("https://blog.apikv.com/"), {
-          message: "文章链接只允许 blog.apikv.com",
-        }),
+        url: z
+          .string()
+          .url()
+          .refine((u) => u.startsWith("https://blog.apikv.com/"), {
+            message: "文章链接只允许 blog.apikv.com",
+          }),
         summary: z.string(),
         publishedAt: z.string(),
       }),
     )
     .safeParse(data.posts);
   if (!posts.success) fail(`blog-posts.json: ${posts.error.message}`);
-  if (data.posts.some((p: { url: string }, i: number) =>
-    data.posts.findIndex((q: { url: string }) => q.url === p.url) !== i,
-  )) {
+  if (
+    data.posts.some(
+      (p: { url: string }, i: number) =>
+        data.posts.findIndex((q: { url: string }) => q.url === p.url) !== i,
+    )
+  ) {
     fail("blog-posts.json 存在重复文章链接");
   }
 }
