@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { personJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://sumery.cn"),
@@ -29,6 +30,10 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="h-full antialiased">
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+        />
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
