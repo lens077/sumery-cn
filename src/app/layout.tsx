@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
@@ -31,6 +32,12 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        {/* 自建 Umami：全站只初始化一次 */}
+        <Script
+          src="https://umami.apikv.com/s.js"
+          data-website-id="b9c91a80-6330-4d0b-8b58-5d478ce805b7"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
