@@ -67,18 +67,11 @@ k8s-release:
 	  || { echo "k8s-release: 工作区不干净；镜像会与提交对不上"; exit 1; }
 	docker buildx build --platform $(K8S_PLATFORMS) \
 	  -f deploy/web/Dockerfile -t $(SITE_IMG):$(TAG) --push .
-	digest=$$(docker buildx imagetools inspect $(SITE_IMG):$(TAG) \
-	  | sed -n 's/^Digest:[[:space:]]*//p'); \
-	python3 - "$$(TAG)=$(TAG)" <<-'PY' \
-	|| exit 1
-	import re, sys
-	tag = dict(kv.split("=", 1) for kv in sys.argv[1:])["TAG"]
-	p = "$(VALUES_PROD)"
-	s = open(p).read()
-	s = re.sub(r'(tag:\s*)"[^"]*"', rf'\1"{tag}"', s, count=1)
-	s = re.sub(r'(digest:\s*)"[^"]*"', rf'\1"{digest}"', s, count=1)
-	open(p, "w").write(s)
-	PY
+	digest=$$(docker buildx imagetools inspect $(SITE_IMG):$(TAG) | sed -n 's/^Digest:[[:space:]]*//p'); \
+	node -e 'const fs=require("fs");const p="$(VALUES_PROD)";let s=fs.readFileSync(p,"utf8");\
+	  s=s.replace(/(tag:\s*)"[^"]*"/,`$1"$(TAG)"`);\
+	  s=s.replace(/(digest:\s*)"[^"]*"/,`$1"${digest}"`);\
+	  fs.writeFileSync(p,s);'
 	@imgs=$$(helm template sumery $(CHART) -f $(CHART)/values.yaml -f $(VALUES_PROD) \
 	   | sed -nE 's/^[[:space:]]+image: //p' | sort -u); echo "$$imgs"; \
 	 echo "$$imgs" | grep -q "$(SITE_IMG):$(TAG)@" \
