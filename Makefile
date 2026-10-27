@@ -84,7 +84,10 @@ k8s-release:
 	 echo "$$imgs" | grep -q "$(SITE_IMG):$(TAG)@" \
 	   || { echo "k8s-release: 渲染出的 chart 没有运行 $(SITE_IMG):$(TAG)"; exit 1; }
 	git add $(VALUES_PROD) && git commit -m "deploy: sumery-site $(TAG) → k8s" -- $(VALUES_PROD)
-	git push origin main && git push $(GITLAB_REMOTE) main
+	git push origin main
+	@git remote get-url $(GITLAB_REMOTE) >/dev/null 2>&1 \
+	  && git push $(GITLAB_REMOTE) main \
+	  || echo "（未配置 $(GITLAB_REMOTE) 镜像仓；Argo CD 若指向 GitHub 需确认集群可达）"
 	@echo "已推送；GitLab webhook → Argo CD sumery-prod（kubectl -n sumery rollout status deploy/sumery-web）"
 
 # 打印 Pangolin 回源与首次接管的全部参数（人工执行，脚本不代跑）
