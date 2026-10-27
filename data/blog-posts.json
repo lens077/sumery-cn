@@ -1,1 +1,362 @@
-{"syncedAt":"1970-01-01T00:00:00.000Z","posts":[]}
+{
+  "syncedAt": "2026-10-27T20:43:37.453Z",
+  "posts": [
+    {
+      "id": "https://blog.apikv.com/blog/argocd-tls-entrypoint/",
+      "title": "给 ArgoCD 换 TLS 入口：Cilium Gateway、TLSRoute 与一个绕不过的 ALPN 坑",
+      "url": "https://blog.apikv.com/blog/argocd-tls-entrypoint/",
+      "summary": "一个「让 argocd CLI 用上原生 gRPC」的小目标，最后拆成了三代问题：Pangolin 的 Resource Auth 把 CLI 302 掉、h2c 上游让 Traefik 返回 500、--insecure 写死在 args 里导致新 Pod CrashLoop、Passthrough 与 Termin",
+      "publishedAt": "2026-10-26T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/download-cdn-edge-fallback/",
+      "title": "给桌面客户端做下载加速：从「桶直接公开」到「边缘优先、源站兜底」的三代演进",
+      "url": "https://blog.apikv.com/blog/download-cdn-edge-fallback/",
+      "summary": "安装包下载最初是「桶直接公开、URL 写死在网页里」——能用，但任何人猜到路径就能镜像、刷流量。第二代把它改成桶私有 + 一次性令牌 + 三层限流，把链接变成「能力」。第三代接入 EdgeOne Pages 承载安装包字节，源站对象存储退成兜底：服务端兑换令牌时用一次 HEAD 探测决定跳边缘还是跳预签名链接，探测结果",
+      "publishedAt": "2026-10-26T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/virgo-three-origin-delivery/",
+      "title": "把静态站发到三个地方：Cloudflare、EdgeOne 与 Kubernetes 的 GitOps 流水线",
+      "url": "https://blog.apikv.com/blog/virgo-three-origin-delivery/",
+      "summary": "同一份静态站，发到 Cloudflare Pages、EdgeOne Pages 和 Kubernetes 集群里的自有域名。用 GitHub Actions 构建镜像与回写 tag，用 GitLab 镜像绕过 ArgoCD 拉不动 GitHub 的网络问题，用 Helm + HTTPRoute + CiliumNet",
+      "publishedAt": "2026-10-26T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/activation-code-mail-reply-to/",
+      "title": "买家回复激活码邮件被退信：一个 Reply-To 头，和顺便重写的邮件模板",
+      "url": "https://blog.apikv.com/blog/activation-code-mail-reply-to/",
+      "summary": "Scorpius 的买家回复「Scorpius 激活码」邮件，却收到「域名不存在」的退信——因为发件人是只发不收的 noreply@apikv.com，而正文让人「直接回复本邮件」。修复不止加一行信头：回信地址的优先级、中文显示名的 RFC 2047 编码、敢于承诺「回复有用」的文案，以及把纯文本邮件换成剥掉样式也能读",
+      "publishedAt": "2026-10-25T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/alipay-pc-website-payment-integration/",
+      "title": "给桌面软件官网接入支付宝：从沙箱到生产，踩过的七个坑",
+      "url": "https://blog.apikv.com/blog/alipay-pc-website-payment-integration/",
+      "summary": "Scorpius 官网 6 元买断卖激活码，接入支付宝电脑网站支付。Go 没有官方 SDK 就按规范自己签名；沙箱能做什么不能做什么；私钥抄错一个字符、私钥进 Helm values、买家没填邮箱导致码丢失、表单编码错导致验签失败——这些坑都真实发生过，把实现、数据模型与上线清单一起写下来。",
+      "publishedAt": "2026-10-25T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/pangolin-crowdsec-safeline/",
+      "title": "给 Pangolin 叠两层 WAF：CrowdSec 查你是谁，雷池看你说什么",
+      "url": "https://blog.apikv.com/blog/pangolin-crowdsec-safeline/",
+      "summary": "上一篇我给 WAF 泼了冷水，这次还是装上了，而且是两层：CrowdSec 按 IP 信誉和行为封人，一处发现、7 台机器 5 秒内一起封；雷池用语义分析逐个检查请求内容。两者都以 Traefik 插件的形式挂在 Pangolin 入口上，不用另起反向代理，也不用交出证书。实测每个请求多 2.2ms。过程中踩了 8 个",
+      "publishedAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/server-login-audit-ai-era/",
+      "title": "服务器上线 100 秒，就有人来敲门：一次登录日志排查与 AI 时代的自保清单",
+      "url": "https://blog.apikv.com/blog/server-login-audit-ai-era/",
+      "summary": "让 AI 帮我查 7 台服务器的登录日志，结果看到一台「节拍器」：每 40 秒一次、一周一万三千多次的低速爆破。顺着日志还翻出了写进日志的明文密码、被另一个 AI 会话悄悄删掉的 history，以及一扇自己打开却没注意的后门。AI 让攻击更便宜，也让我们自己的操作更难追溯；网站被篡改、被挂暗链还可能招来「喝茶」。文末",
+      "publishedAt": "2026-09-29T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E6%80%A7%E8%83%BD-%E9%A6%96%E9%A1%B5%E8%BF%81%E5%88%B0ssr%E6%8A%8Apagespeed%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BB%8E61%E5%81%9A%E5%88%B0100/",
+      "title": "电商篇：性能——首页迁到 SSR，PageSpeed 移动端从 61 做到 100",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E6%80%A7%E8%83%BD-%E9%A6%96%E9%A1%B5%E8%BF%81%E5%88%B0ssr%E6%8A%8Apagespeed%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BB%8E61%E5%81%9A%E5%88%B0100/",
+      "summary": "PageSpeed 移动端 61、桌面 88，TBT 和 CLS 却是满分。从五个指标的权重反推丢分在哪，用 Lighthouse 的网络时间线定位到一份 162 KB 的阻塞 CSS——里面全是 @fontsource 的 303 条 @font-face——和一个动态 import 造成的第二波 45 个请求。两条",
+      "publishedAt": "2026-09-15T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AF%87-reloader%E8%AE%A9secret%E5%8F%98%E6%9B%B4%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8pod/",
+      "title": "基础设施篇：Reloader 让 Secret 变更自动滚动 Pod",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AF%87-reloader%E8%AE%A9secret%E5%8F%98%E6%9B%B4%E8%87%AA%E5%8A%A8%E6%BB%9A%E5%8A%A8pod/",
+      "summary": "凭据后端改了值、ESO 把新值写进了 Kubernetes Secret，Pod 却还在用旧密码。用 stakater/Reloader 补上这一环，同时说清它管不到的那一段：微服务的凭据在配置中心里，不在 Secret 里。",
+      "publishedAt": "2026-09-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-speccoding%E8%A7%84%E8%8C%83%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/",
+      "title": "电商篇：Spec Coding——让 AI 按仓库规范干活，而不是靠猜",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-speccoding%E8%A7%84%E8%8C%83%E9%A9%B1%E5%8A%A8%E7%BC%96%E7%A8%8B/",
+      "summary": "以 JavaGuide 的 Spec Coding 文章为框架，对照电商仓库的实际做法：规范放在哪、怎么被 AI 读到、三色权限如何落成硬规则与 CI 门禁、验收标准怎样写到可判定、关单前的完成自检，以及规范改了之后如何反查受影响的实现。",
+      "publishedAt": "2026-09-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%89%E5%85%A8-%E5%9F%BA%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%BB%95%E8%BF%87/",
+      "title": "电商篇：安全——基于请求方法的访问控制绕过",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%89%E5%85%A8-%E5%9F%BA%E4%BA%8E%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95%E7%9A%84%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%BB%95%E8%BF%87/",
+      "summary": "从「把 POST 改成 GET 就能提权」这个常见漏洞出发，解释授权层按 (路径, 方法) 匹配而执行层不看方法的病因，再拿电商项目的真实代码逐层核查：Connect 的 405、网关 Casbin 的默认拒绝、策略文件的通配陷阱、CSRF 豁免与 NO_SIDE_EFFECTS 的耦合。核查挖出一处真实缺口（审批 R",
+      "publishedAt": "2026-09-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/gitops%E7%AF%87-01-gitleaks%E9%98%BB%E6%AD%A2%E5%87%AD%E6%8D%AE%E8%BF%9B%E5%85%A5git%E5%8E%86%E5%8F%B2/",
+      "title": "GitOps 篇 01：用 Gitleaks 阻止凭据进入 Git 历史",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/gitops%E7%AF%87-01-gitleaks%E9%98%BB%E6%AD%A2%E5%87%AD%E6%8D%AE%E8%BF%9B%E5%85%A5git%E5%8E%86%E5%8F%B2/",
+      "summary": "以电商项目的真实 GitOps 工作流为背景，解释 Gitleaks 扫描什么、为什么要同时守住暂存区与完整历史，以及如何在本地和 GitHub Actions 中建立失败即阻断的凭据门禁。",
+      "publishedAt": "2026-09-10T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-git%E9%85%8D%E7%BD%AE/",
+      "title": "基础篇：Git 配置",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-git%E9%85%8D%E7%BD%AE/",
+      "summary": "配置 git 的用户名与邮箱：为什么必须用在 GitHub/GitLab 上绑定并验证过的邮箱（否则提交不计入贡献者），以及一份可直接抄的 ~/.gitconfig——彩色输出、pager、autocrlf、代理与按提交时间排序的分支列表。",
+      "publishedAt": "2026-09-10T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AF%87-spegel%E9%95%9C%E5%83%8Fp2p%E5%88%86%E5%8F%91/",
+      "title": "基础设施篇：Spegel 镜像 P2P 分发",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AF%87-spegel%E9%95%9C%E5%83%8Fp2p%E5%88%86%E5%8F%91/",
+      "summary": "在 Kubernetes 集群中用 Spegel 让节点共享容器镜像层：理解它与镜像仓库、Docker Buildx、crane 的边界，判断适用场景，并设计不绕过签名和准入校验的 PoC。",
+      "publishedAt": "2026-09-10T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/docker-and-kubernetes-on-one-node/",
+      "title": "一台跑着 Docker 和 Pigsty 的机器，怎么加进现有 Kubernetes 集群",
+      "url": "https://blog.apikv.com/blog/docker-and-kubernetes-on-one-node/",
+      "summary": "把一台不干净的节点（Docker 29 + 10 个业务容器 + Pigsty 单机 PostgreSQL）以 worker 身份加入 kubeadm 1.36 + Cilium 1.20 集群的完整过程：共用 containerd 的前提、网段与端口冲突排查、ufw 转发、pause 镜像架构坑、OpenEBS 在没",
+      "publishedAt": "2026-09-09T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%AE%89%E5%85%A8%E7%AF%87-%E7%94%A8santa%E4%BF%9D%E6%8A%A4mac%E5%AF%86%E9%92%A5%E6%96%87%E4%BB%B6/",
+      "title": "安全篇：用 Santa 保护 Mac 密钥文件",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%AE%89%E5%85%A8%E7%AF%87-%E7%94%A8santa%E4%BF%9D%E6%8A%A4mac%E5%AF%86%E9%92%A5%E6%96%87%E4%BB%B6/",
+      "summary": "在没有 MDM 的个人 macOS 上，用 Santa File Access Authorization 限制 SSH 私钥、Docker、Kubernetes、腾讯云 CLI、Claude、Codex 和 GitHub CLI 凭证的读写，并按审计、验证、阻断三阶段安全上线。",
+      "publishedAt": "2026-09-09T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%A2%E6%88%B7%E6%94%AF%E6%8C%81-%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1/",
+      "title": "电商篇：客户支持——配置自定义域名邮箱",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%A2%E6%88%B7%E6%94%AF%E6%8C%81-%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D%E9%82%AE%E7%AE%B1/",
+      "summary": "用 Cloudflare Email Routing 接收 support@example.com，通过 Resend 安全发送客服邮件，并整理软件许可协议、隐私政策、退款与支持规则。",
+      "publishedAt": "2026-09-09T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/client-controlled-identity-gateway-audit/",
+      "title": "把 admin=false 改成 true：拿自己的网关代码做一次攻防复盘",
+      "url": "https://blog.apikv.com/blog/client-controlled-identity-gateway-audit/",
+      "summary": "从「改一个布尔值就能进后台」这个经典教学场景出发，先厘清所谓「截取请求」到底发生在哪一端，再逐层审计一套 Go 网关的真实代码——身份头剥离、不透明会话、RS256 验签、下游独立鉴权。四道防线都成立，却挖出两处可复现的真实漏洞：匿名购物访客 cookie 的横向越权，以及 OAuth 回调把「第 1 步校验过」当成保",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/default-deny-server-side-authorization/",
+      "title": "默认拒绝：别让前端流程替服务器做访问控制",
+      "url": "https://blog.apikv.com/blog/default-deny-server-side-authorization/",
+      "summary": "从「删除订单只检查 ID 是否存在」这个常见错误出发，整理一套可落地的服务端访问控制准则：默认拒绝、每个 HTTP 方法独立授权、资源归属检查、拒绝信任客户端参数、多步骤操作绑定、集中 IAM 与最小权限。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/dsh-mobile-pangolin-lan/",
+      "title": "把电脑上的 DSH 带到手机：局域网访问与 Pangolin 公网入口",
+      "url": "https://blog.apikv.com/blog/dsh-mobile-pangolin-lan/",
+      "summary": "使用 lens077/deepseek-harness 的 Web 界面，在手机上查看任务、处理待办和继续会话。说明 pnpm dev 的真实启动行为、局域网转发方法，以及 Pangolin + Newt 的必要参数和认证边界。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/pangolin-macos-newt-launchd/",
+      "title": "把家里的 Mac 接到公网：Pangolin 服务端部署与 Newt 自启动实战",
+      "url": "https://blog.apikv.com/blog/pangolin-macos-newt-launchd/",
+      "summary": "用一台公网 VPS 为 Mac 本地服务提供 HTTPS 入口：从 Pangolin、Gerbil、Traefik 的 Docker Compose 部署，到 Newt 接入、资源认证、macOS launchd 自启动、凭据恢复和分层排错。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/parallels-prlctl-windows-e2e-from-macos/",
+      "title": "用 prlctl 从 macOS 驱动 Parallels 里的 Windows 做桌面应用 e2e",
+      "url": "https://blog.apikv.com/blog/parallels-prlctl-windows-e2e-from-macos/",
+      "summary": "不在虚拟机里装任何 agent，只用 Parallels 自带的 prlctl（exec / capture）加共享目录和 PowerShell，把一个 Tauri 剪贴板工具的 Windows 版跑通了全流程自动化测试：启动常驻、剪贴板捕获、全局快捷键呼出、回车粘贴到焦点输入框、重启持久化、NSIS 静默安装卸载。记",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E6%8F%90%E9%AB%98%E7%89%A9%E7%90%86%E5%B1%82%E9%9D%A2%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/",
+      "title": "基础篇：提高物理层面开发效率",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E6%8F%90%E9%AB%98%E7%89%A9%E7%90%86%E5%B1%82%E9%9D%A2%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/",
+      "summary": "全栈电商微服务系列的基础篇：开发机与显示器的选择、输入法取舍，以及 Control 与 Command 互换、左右分屏、菜单栏与程序坞操作、聚焦搜索启动应用这几组 macOS 键盘快捷键的设置步骤。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E8%AF%AD%E8%A8%80%E5%AE%89%E8%A3%85/",
+      "title": "基础篇：语言安装",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E8%AF%AD%E8%A8%80%E5%AE%89%E8%A3%85/",
+      "summary": "安装项目所需的语言与包管理器：从官网安装 Golang，用 fnm 安装并管理 Node.js LTS，以及单独下载二进制安装 pnpm 12（说明为什么不用 Corepack，以及 11 与 12 的取舍）。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E9%80%9A%E8%BF%87%E8%BD%AF%E4%BB%B6%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/",
+      "title": "基础篇：通过软件提高开发效率",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%9F%BA%E7%A1%80%E7%AF%87-%E9%80%9A%E8%BF%87%E8%BD%AF%E4%BB%B6%E6%8F%90%E9%AB%98%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87/",
+      "summary": "从软件层面提高开发效率：终端工具（Warp、Termius、WindTerm）的选择与标签页用法，以及两个不依赖 Docker 守护进程的辅助工具——直接操作远端镜像仓库的 crane 和校验 Kubernetes 清单的 kubeconform。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BC%80%E7%AF%87/",
+      "title": "全栈电商微服务从 0 到 1 再到 10：开篇",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E5%BC%80%E7%AF%87/",
+      "summary": "系列开篇：说明这套教程覆盖的范围、「全栈」的具体定义——Node.js（React + TypeScript）前端，加上 Golang 构建的面向微服务的 API 网关与按 DDD 业务能力拆分的微服务——以及各篇的阅读顺序。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96/",
+      "title": "电商篇：安装依赖",
+      "url": "https://blog.apikv.com/blog/%E5%85%A8%E6%A0%88%E7%94%B5%E5%95%86%E5%BE%AE%E6%9C%8D%E5%8A%A1/%E7%94%B5%E5%95%86%E7%AF%87-%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96/",
+      "summary": "安装电商项目所需的两个 Golang 代码生成插件：把 .proto 生成 Go 消息类型的 protoc-gen-go，以及生成 Connect RPC 服务端与客户端代码的 protoc-gen-connect-go；说明二进制落在哪里、需要什么前置条件。",
+      "publishedAt": "2026-09-08T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/astro-ntfy-update-reminder/",
+      "title": "给静态博客加一个催更按钮：ntfy 接入、IP 去重与 Docker 部署",
+      "url": "https://blog.apikv.com/blog/astro-ntfy-update-reminder/",
+      "summary": "保留 Astro 静态站，用 Python 标准库和 SQLite 实现全站 IP 12 小时去重，再接入自建 ntfy。记录权限配置、代理信任、持久化、部署流程和一次真实的容器权限故障。",
+      "publishedAt": "2026-09-06T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/cilium-network-policy-as-auth-boundary/",
+      "title": "网络策略就是鉴权：用 Cilium CNP 守住「只有网关能连后端」这条线",
+      "url": "https://blog.apikv.com/blog/cilium-network-policy-as-auth-boundary/",
+      "summary": "后端相信网关注入的身份头，那「谁能连到后端」就不是防火墙问题而是鉴权问题。从一次伪造身份的 curl 讲起：为什么需要 CiliumNetworkPolicy、怎么装、怎么分别应用在前端 / 网关 / 后端、以及开发阶段怎么开一个只属于 dev 的口子而不让它漏进生产——含 Hubble 抓到的丢包证据与一条 cana",
+      "publishedAt": "2026-09-06T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/frontend-asset-protection/",
+      "title": "前端隐私资产保护",
+      "url": "https://blog.apikv.com/blog/frontend-asset-protection/",
+      "summary": "有授权限制的模型、字体、图片放到网页上就等于提供下载。用一个 3D 模型的真实改造过程,说明能做到什么、做不到什么,以及三层门槛怎么搭。",
+      "publishedAt": "2026-09-06T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/ntfy-server-client-setup/",
+      "title": "自建 ntfy：Docker 服务端部署与手机、桌面客户端接入",
+      "url": "https://blog.apikv.com/blog/ntfy-server-client-setup/",
+      "summary": "从 Docker 部署、HTTPS 反向代理、账号与主题权限，到 Android、iOS 和桌面订阅；结合 Alertmanager 转发脚本说明发布配置，并区分客户端订阅凭据与服务端发布 Token。",
+      "publishedAt": "2026-09-06T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/novel/missing-heiress-03/",
+      "title": "《全校都在找失踪的千金》第3章·Iris",
+      "url": "https://blog.apikv.com/novel/missing-heiress-03/",
+      "summary": "美院展厅里，一幅三年前的《Iris》与乔曼有着同一张脸；全校寻找“失踪千金”的帖子也在此时出现。",
+      "publishedAt": "2026-09-05T02:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/novel/missing-heiress-02/",
+      "title": "《全校都在找失踪的千金》第2章·夜班名额",
+      "url": "https://blog.apikv.com/novel/missing-heiress-02/",
+      "summary": "乔曼为每月七百九十二元争取图书馆夜班，陌生笔迹替她赢下名额，也让更多人开始追问她的过去。",
+      "publishedAt": "2026-09-05T01:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/novel/missing-heiress-01/",
+      "title": "《全校都在找失踪的千金》第1章·靠门下铺",
+      "url": "https://blog.apikv.com/novel/missing-heiress-01/",
+      "summary": "新生乔曼为避开上铺换到靠门的床位，却发现自己的手能写出陌生而精准的小楷。深夜，楼下有人注视她的窗。",
+      "publishedAt": "2026-09-05T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/macos-split-dns-resolver/",
+      "title": "macOS 分域名 DNS 解析部署",
+      "url": "https://blog.apikv.com/blog/macos-split-dns-resolver/",
+      "summary": "让指定后缀(.test)的开发域名走局域网 Ubuntu 上的 dnsmasq,其余域名照旧走系统 DNS:不改全局 DNS、不维护多台机器的 hosts,含环境、安装步骤与验证。",
+      "publishedAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/migrate-to-astro/",
+      "title": "站点从 Docusaurus 迁移到 Astro",
+      "url": "https://blog.apikv.com/blog/migrate-to-astro/",
+      "summary": "重建博客:Astro 7 + Content Collections,541 篇文档路径不变,部署链路照旧",
+      "publishedAt": "2026-08-18T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/pangolin-tunnel/",
+      "title": "Pangolin 内网穿透:一个 502 背后叠着四个坑",
+      "url": "https://blog.apikv.com/blog/pangolin-tunnel/",
+      "summary": "用 Pangolin(WireGuard 隧道 + Traefik + Web 面板)把家里 Mac 与 k8s 集群上的自托管服务经 VPS 发布到公网,内网侧零入站端口:方案对比、架构与一个 502 背后层层叠着的四个坑。",
+      "publishedAt": "2026-08-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/ssh-port-lockout/",
+      "title": "改个 SSH 端口,我把自己锁在了服务器外面",
+      "url": "https://blog.apikv.com/blog/ssh-port-lockout/",
+      "summary": "一次改 sshd 端口的复盘:改了 Port 却纹丝不动、第二次把保底的 22 也弄没了,最后靠云厂商 VNC 救回。三个被 systemd socket activation、cloud-init 与 IPv6 监听掩盖的知识点。",
+      "publishedAt": "2026-08-11T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/github-profile-readme/",
+      "title": "GitHub 主页美化",
+      "url": "https://blog.apikv.com/blog/github-profile-readme/",
+      "summary": "用 profile README 把 GitHub 主页做成一张技术名片:自我介绍、打字动效、技术栈徽章、Star 与提交统计卡片,附全部可复制的片段与效果图。",
+      "publishedAt": "2024-11-02T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/golang-opentelemetry-observability/",
+      "title": "DevOps 开发与运维的可观测性应用实践",
+      "url": "https://blog.apikv.com/blog/golang-opentelemetry-observability/",
+      "summary": "以开发者视角在 Golang 里用 OpenTelemetry Go SDK 创建指标、链路与日志三类遥测数据,再经 OpenTelemetry Collector 导出到 Prometheus、Jaeger 与 Loki:概念、技术栈、架构与逐步配置。",
+      "publishedAt": "2024-11-02T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/pnpm-global-store-path/",
+      "title": "给 PNPM 设置不一样的家——设置 PNPM 全局安装路径",
+      "url": "https://blog.apikv.com/blog/pnpm-global-store-path/",
+      "summary": "把 PNPM 的全局安装目录、仓库与缓存从系统盘挪走:环境变量、store 路径、全局 bin 路径的五步配置与验证,重装系统也不再丢包。",
+      "publishedAt": "2024-11-02T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/gitlab-com-with-local-runner/",
+      "title": "使用 gitlab.com 账户与本地的 GitLab Runner 搭配的 GitOps",
+      "url": "https://blog.apikv.com/blog/gitlab-com-with-local-runner/",
+      "summary": "公有云跑 CI 太贵?把 gitlab.com 账户与家里没有公网 IP 的机器上的 GitLab Runner 搭配起来:注册账号、安装与注册 Runner、编写流水线并验证,全程截图。",
+      "publishedAt": "2024-05-05T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/gitlab-in-docker/",
+      "title": "Docker 安装 GitLab",
+      "url": "https://blog.apikv.com/blog/gitlab-in-docker/",
+      "summary": "用 Docker 在一台服务器上跑起 GitLab CE:目录规划、docker run 参数逐项解释、gitlab.rb 配置、初始密码与端口/IP 修改,附界面截图。",
+      "publishedAt": "2024-02-14T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/install-kubernetes-on-ubuntu/",
+      "title": "Ubuntu 系统安装 Kubernetes v1.29",
+      "url": "https://blog.apikv.com/blog/install-kubernetes-on-ubuntu/",
+      "summary": "在 Ubuntu 上用 kubeadm + containerd 从零部署 Kubernetes v1.29.0:节点前置检查、apt 源、CRI 配置、控制面初始化、网络插件与常见故障排查,附 2024-01-02 更新说明。",
+      "publishedAt": "2023-12-28T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/nginx-quic-http3-build/",
+      "title": "NGINX 二进制编译安装使用 QUIC 协议",
+      "url": "https://blog.apikv.com/blog/nginx-quic-http3-build/",
+      "summary": "从源码编译 quictls/openssl 与 NGINX 以启用 QUIC/HTTP3:安装包准备、编译参数、链接库、systemd 自启、常用指令与 QUIC 站点配置,附验证截图。",
+      "publishedAt": "2023-12-04T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/otel-collector-on-kubernetes/",
+      "title": "Kubernetes 部署 OpenTelemetry Collector 到后端示例",
+      "url": "https://blog.apikv.com/blog/otel-collector-on-kubernetes/",
+      "summary": "在 Kubernetes 上部署 OpenTelemetry Collector,把 Go 应用的链路与指标经 Collector 导出到 Jaeger 与 Prometheus:前置条件、架构图、服务端搭建、客户端接入与验证截图。",
+      "publishedAt": "2023-11-14T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/jaeger-operator-on-kubernetes/",
+      "title": "Kubernetes 安装 Jaeger Operator",
+      "url": "https://blog.apikv.com/blog/jaeger-operator-on-kubernetes/",
+      "summary": "在 Kubernetes 上通过 cert-manager 与 Jaeger Operator 部署 Jaeger:名词解释、前置依赖、安装步骤与访问验证截图。",
+      "publishedAt": "2023-11-04T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/deploy-kubernetes-1-27-on-rocky-linux/",
+      "title": "部署 Kubernetes 最新版 v1.27.1",
+      "url": "https://blog.apikv.com/blog/deploy-kubernetes-1-27-on-rocky-linux/",
+      "summary": "基于 RockyLinux 8/9(RPM 系)用 kubeadm 部署 Kubernetes v1.27.1 的完整过程:配置清单、系统准备、容器运行时、集群初始化与节点加入,并记录踩过的坑。",
+      "publishedAt": "2023-04-27T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/install-kubernetes-on-redhat/",
+      "title": "RedHat 系列安装 Kubernetes",
+      "url": "https://blog.apikv.com/blog/install-kubernetes-on-redhat/",
+      "summary": "在 RedHat 系发行版上安装 Kubernetes:主机名与 hosts、关闭 swap/SELinux/防火墙、内核参数、containerd、kubeadm 初始化与节点加入,附部署截图。",
+      "publishedAt": "2023-04-19T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/devops-engineering/",
+      "title": "运维工程化",
+      "url": "https://blog.apikv.com/blog/devops-engineering/",
+      "summary": "一套面向微服务的运维工程化方案:GitLab/ArgoCD/Jenkins 的 CI/CD、服务治理、Jaeger + OTel + ELK 可观测性、Kubernetes 编排、Casdoor/Casbin + Istio 的认证与流量控制,含配置与截图。",
+      "publishedAt": "2023-03-05T00:00:00.000Z"
+    },
+    {
+      "id": "https://blog.apikv.com/blog/gitlab-cicd-for-golang-web/",
+      "title": "基于 Golang Web 项目的 GitLab CI/CD 部署",
+      "url": "https://blog.apikv.com/blog/gitlab-cicd-for-golang-web/",
+      "summary": "以一个 React + Golang 的 Web 项目为例,从本地环境、GitLab 与 Runner 安装、.gitlab-ci.yml 编写到 Docker 与 Nginx 部署,搭起一条完整的 CI/CD 流水线。",
+      "publishedAt": "2023-03-05T00:00:00.000Z"
+    }
+  ]
+}
