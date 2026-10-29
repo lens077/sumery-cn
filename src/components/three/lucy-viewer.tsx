@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { withBase } from "@/lib/urls";
 import type * as ThreeNS from "three";
 
 /**
@@ -55,7 +56,7 @@ export function LucyViewer() {
           (resolve, reject) => {
             new GLTFLoader()
               .setMeshoptDecoder(MeshoptDecoder)
-              .load("/models/lucy-low.glb", resolve, undefined, reject);
+              .load(withBase("/models/lucy-low.glb"), resolve, undefined, reject);
           },
         );
         if (disposed) {

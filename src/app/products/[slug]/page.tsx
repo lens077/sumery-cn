@@ -1,3 +1,4 @@
+import { withBase } from "@/lib/urls";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -39,7 +40,7 @@ export default async function ProductPage({
           {product.image && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={product.image}
+              src={withBase(product.image)}
               alt=""
               width={56}
               height={56}
@@ -69,7 +70,7 @@ export default async function ProductPage({
       {product.screenshot && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={product.screenshot}
+          src={withBase(product.screenshot)}
           alt={`${product.name} 官网首页截图`}
           width={1600}
           height={1000}

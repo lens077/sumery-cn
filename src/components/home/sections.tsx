@@ -1,3 +1,4 @@
+import { withBase } from "@/lib/urls";
 import type { Product } from "@/lib/content-schema";
 import { statusLabels } from "@/lib/content-schema";
 import type { Game } from "@/lib/content-schema";
@@ -51,7 +52,7 @@ export function ProductCard({ product: p }: { product: Product }) {
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={p.screenshot}
+            src={withBase(p.screenshot)}
             alt={`${p.name} 官网首页截图`}
             width={1600}
             height={1000}
@@ -66,7 +67,7 @@ export function ProductCard({ product: p }: { product: Product }) {
             {p.image && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={p.image}
+                src={withBase(p.image)}
                 alt=""
                 width={40}
                 height={40}

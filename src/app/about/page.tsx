@@ -1,3 +1,4 @@
+import { withBase } from "@/lib/urls";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function AboutPage() {
       </h1>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/brand/lucy-chibi.png"
+        src={withBase("/images/brand/lucy-chibi.png")}
         alt="希曼 IP 形象 Lucy 的 Q 版立绘"
         width={160}
         height={160}
