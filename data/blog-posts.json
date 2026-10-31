@@ -1,6 +1,13 @@
 {
-  "syncedAt": "2026-10-27T20:43:37.453Z",
+  "syncedAt": "2026-10-31T09:38:01.143Z",
   "posts": [
+    {
+      "id": "https://blog.apikv.com/blog/spa-stale-tab-new-version/",
+      "title": "SPA 的标签页放了一天：让老页面知道「服务器有新版了」",
+      "url": "https://blog.apikv.com/blog/spa-stale-tab-new-version/",
+      "summary": "商城标签页在后台挂了几天再切回来，内存里还是上周的构建——点导航时懒加载 chunk 404，购物车填一半时页面悄悄坏掉。从「每次聚焦就 location.reload」这个能用但不成熟的设计起步，一步步走到 buildId 双写、visibilitychange 检测、用户自决刷新与 chunk 失败兜底的完整实现，",
+      "publishedAt": "2026-10-31T00:00:00.000Z"
+    },
     {
       "id": "https://blog.apikv.com/blog/argocd-tls-entrypoint/",
       "title": "给 ArgoCD 换 TLS 入口：Cilium Gateway、TLSRoute 与一个绕不过的 ALPN 坑",
